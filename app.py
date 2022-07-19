@@ -6,6 +6,7 @@ This name tells the instance where it is located;
 Tis is needed because Flask sets up some paths behind the scenes.
 '''
 from markupsafe import escape
+import datetime
 from flask import Flask, render_template #render_template to... render... a template... ☜(ﾟヮﾟ☜)
 
 app = Flask(__name__)
@@ -48,6 +49,18 @@ def capitalize(word):
     comes with the markupsafe package, which was installed along with Flask.
     '''
     return '<h1>{}</h1>'.format(escape(word.capitalize()))
+
+@app.route('/index/')
+def index():
+    '''
+    This function is running a render_template function which open templates from
+    a template folder located inside the flask_app directory
+    '''
+    return render_template('index.html')
+
+@app.route('/index/date/')
+def show_datetime():
+    return render_template('date.html', dt_now = datetime.datetime.now())
 
 if __name__ == '__main__':
     app.run(debug = True)
