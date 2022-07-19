@@ -14,8 +14,10 @@
 </head>
 <body>
     <nav>
-        <a href= "#">FlaskApp</a>
-        <a href="#">About</a>
+        {#Here, you use the special url_for() function that 
+            will return the URL for the view function you give it.#}
+        <a href= "{{ url_for('index') }}">FlaskApp</a>
+        <a href="{{ url_for('about') }}">About</a>
     </nav>
     <hr>
     <div class="content">
