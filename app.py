@@ -58,9 +58,15 @@ def index():
     '''
     return render_template('index.html')
 
-@app.route('/index/date/')
+@app.route('/date/')
 def show_datetime():
-    return render_template('date.html', dt_now = datetime.datetime.now())
+    '''
+    On the html we added an H3 heading with the 
+    special {{ ... }} delimiter to print the value 
+    of the dt_now variable.
+    '''
+    dt_now = datetime.datetime.now()
+    return render_template('date.html', dt_now = dt_now)
 
 if __name__ == '__main__':
     app.run(debug = True)
