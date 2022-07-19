@@ -6,12 +6,11 @@ This name tells the instance where it is located;
 Tis is needed because Flask sets up some paths behind the scenes.
 '''
 from markupsafe import escape
-from flask import Flask
+from flask import Flask, render_template #render_template to... render... a template... ☜(ﾟヮﾟ☜)
 
 app = Flask(__name__)
 
 @app.route('/')
-@app.route('/index/')
 def hello():
     '''
     Once you create the app instance, you can use it to handle incoming 
