@@ -72,5 +72,10 @@ def show_datetime():
     dt_now = datetime.datetime.now()
     return render_template('date.html', dt_now = dt_now)
 
+@app.route('/comments/')
+def comments():
+    comments = ['This is being printed recursively', 'Line by line', 'Using jinja2', 'Looping capabilities']
+    return render_template('comments.html', comments = comments)
+
 if __name__ == '__main__':
     app.run(debug = True)
