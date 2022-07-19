@@ -25,12 +25,12 @@ def hello():
     '''
     return '<h1>Hello, World!<h1>'
 
-@app.route('/about/')
-def about():
+@app.route('/about_app/')
+def about_app():
     '''
     This function is decorated with the @app.route() decorator that 
     transforms it into a view function that handles requests 
-    for the http://127.0.0.1:5000/about endpoint.
+    for the http://127.0.0.1:5000/about_app endpoint.
     '''
 
     return '<h2>This is a flask web application.<h2>'
@@ -57,6 +57,10 @@ def index():
     a template folder located inside the flask_app directory
     '''
     return render_template('index.html')
+
+@app.route('/about/')
+def about():
+    return render_template('about.html')
 
 @app.route('/date/')
 def show_datetime():
