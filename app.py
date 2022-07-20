@@ -5,6 +5,7 @@ The, we pass the special variable __name__, which holds the name of the current 
 This name tells the instance where it is located; 
 Tis is needed because Flask sets up some paths behind the scenes.
 '''
+##Intro Section
 from markupsafe import escape
 import datetime
 from flask import Flask, render_template #render_template to... render... a template... ☜(ﾟヮﾟ☜)
@@ -50,6 +51,7 @@ def capitalize(word):
     '''
     return '<h1>{}</h1>'.format(escape(word.capitalize()))
 
+##Template Section
 @app.route('/index/')
 def index():
     '''
@@ -77,6 +79,15 @@ def comments():
     comments = ['This is being printed recursively', 'Line by line', 'Using jinja2', 'Looping capabilities']
     footnote = ['This is being', 'Joined by', 'A Jinja filter']
     return render_template('comments.html', comments = comments, footnote = footnote)
+
+##Forms section
+@app.route('/messages/')
+def messages():
+    messages = [    
+                {'title': 'Message One', 'body': 'This is a dictionary'},
+                {'title': 'Message Two', 'body': 'This is another entry on the same dictionary'}
+                ]
+    return render_template("messages.html", messages = messages)
 
 if __name__ == '__main__':
     app.run(debug = True)
