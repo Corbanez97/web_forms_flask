@@ -94,8 +94,8 @@ def comments():
 ##Forms section
 
 messages = [    
-            {'title': 'Message One', 'body': 'This is a dictionary'},
-            {'title': 'Message Two', 'body': 'This is another entry on the same dictionary'}
+            {'title': 'Go to Create Message', 'body': 'And Write a Message with a title and a body.'},
+            {'title': 'The application will redirect', 'body': 'You here to see your newly created message!'}
             ]
 
 @app.route('/message/')
