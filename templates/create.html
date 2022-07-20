@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Add a New Message {% endblock %}</h1>
+
+    {# In this code, you extend the base.html template and replace the content block
+        with an <h1> heading that serves as a title for the page. 
+            In the <form> tag, you set the method attribute to post 
+                so the form data gets sent to the server as a POST request#}
+
+    <form method="post">
+        <label for="title">Title</label>
+        <br>
+        <input type="text" name="title"
+               placeholder="Message title"
+               value="{{ request.form['title'] }}"></input>
+        <br>
+
+        <label for="body">Message Body</label>
+        <br>
+        <textarea name="body"
+                  placeholder="Message body"
+                  rows="15"
+                  cols="60"
+                  >{{ request.form['body'] }}</textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

@@ -8,4 +8,7 @@
             <p>{{ message['body'] }}</p>
         </div>
     {% endfor %}
+    <a href="{{ url_for('create') }}">
+        <button>Create Message</button>
+    </a>
 {% endblock %}

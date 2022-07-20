@@ -9,8 +9,19 @@ Tis is needed because Flask sets up some paths behind the scenes.
 from markupsafe import escape
 import datetime
 from flask import Flask, render_template #render_template to... render... a template... ☜(ﾟヮﾟ☜)
+from flask import request, url_for, flash, redirect
+'''
+*The global request object to access incoming request data 
+    that will be submitted via the HTML form you built in the last step.
+*The url_for() function to generate URLs.
+*The flash() function to flash a message when a request 
+    is processed (to inform the user that everything went well, 
+        or to inform them of an issue if the submitted data is not valid).
+*The redirect() function to redirect the client to a different location.
+'''
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '123456'
 
 @app.route('/')
 def hello():
@@ -81,13 +92,30 @@ def comments():
     return render_template('comments.html', comments = comments, footnote = footnote)
 
 ##Forms section
-@app.route('/messages/')
-def messages():
-    messages = [    
-                {'title': 'Message One', 'body': 'This is a dictionary'},
-                {'title': 'Message Two', 'body': 'This is another entry on the same dictionary'}
-                ]
-    return render_template("messages.html", messages = messages)
+
+messages = [    
+            {'title': 'Go to Create Message', 'body': 'And Write a Message with a title and a body.'},
+            {'title': 'The application will redirect', 'body': 'You here to see your newly created message!'}
+            ]
+
+@app.route('/message/')
+def message():
+    return render_template("message.html", messages = messages)
+
+@app.route('/create/', methods = ('GET', 'POST')) #This adds a POST method. Therefore, this page is capable of submiting data
+def create():
+    if request.method == 'POST':
+        title = request.form['title']
+        body = request.form['body']
+
+        if not title:
+            flash('Title is required!')
+        elif not body:
+            flash('Content is required!')
+        else:
+            messages.append({'title': title, 'body': body})
+            return redirect(url_for('message')) #Python itself redirects you to a url_for. Quite readable
+    return render_template('create.html')
 
 if __name__ == '__main__':
     app.run(debug = True)
