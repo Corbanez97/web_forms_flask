@@ -89,5 +89,9 @@ def messages():
                 ]
     return render_template("messages.html", messages = messages)
 
+@app.route('/create/', methods = ('GET', 'POST')) #This adds a POST method. Therefore, this page is capable of submiting data
+def create():
+    return render_template('create.html')
+
 if __name__ == '__main__':
     app.run(debug = True)
