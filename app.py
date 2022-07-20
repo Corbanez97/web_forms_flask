@@ -114,7 +114,7 @@ def create():
             flash('Content is required!')
         else:
             messages.append({'title': title, 'body': body})
-            return redirect(url_for('message'))
+            return redirect(url_for('message')) #Python itself redirects you to a url_for. Quite readable
     return render_template('create.html')
 
 if __name__ == '__main__':
