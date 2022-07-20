@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {#Uses the block information from the base.html, 
+                            i.e., extends the base tamplate#}
+
+{% block content %}
+    <h1>{% block title %} Index {% endblock %}</h1>
+    <h1>Hello World!</h1>
+    <h2>Welcome to FlaskApp!</h2>
+    <h3>This page is inherited from base.html</h3>
+{% endblock %}

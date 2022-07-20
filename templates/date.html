@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Date Page {% endblock %}</h1>
+    <h1>Web Application with Flask</h1>
+    <h2>This page is using a variable from Python</h2>
+    {#We added an H3 heading with the special {{ ... }} 
+    delimiter to print the value of the dt_now variable.#}
+    {#This is how we comment stuff on jinja2#}
+    <h3>Var = {{ dt_now }}</h3>
+{% endblock %}

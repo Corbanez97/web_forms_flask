@@ -6,6 +6,7 @@ This name tells the instance where it is located;
 Tis is needed because Flask sets up some paths behind the scenes.
 '''
 from markupsafe import escape
+import datetime
 from flask import Flask, render_template #render_template to... render... a template... ☜(ﾟヮﾟ☜)
 
 app = Flask(__name__)
@@ -24,12 +25,12 @@ def hello():
     '''
     return '<h1>Hello, World!<h1>'
 
-@app.route('/about/')
-def about():
+@app.route('/about_app/')
+def about_app():
     '''
     This function is decorated with the @app.route() decorator that 
     transforms it into a view function that handles requests 
-    for the http://127.0.0.1:5000/about endpoint.
+    for the http://127.0.0.1:5000/about_app endpoint.
     '''
 
     return '<h2>This is a flask web application.<h2>'
@@ -48,6 +49,33 @@ def capitalize(word):
     comes with the markupsafe package, which was installed along with Flask.
     '''
     return '<h1>{}</h1>'.format(escape(word.capitalize()))
+
+@app.route('/index/')
+def index():
+    '''
+    This function is running a render_template function which open templates from
+    a template folder located inside the flask_app directory
+    '''
+    return render_template('index.html')
+
+@app.route('/about/')
+def about():
+    return render_template('about.html')
+
+@app.route('/date/')
+def show_datetime():
+    '''
+    On the html we added an H3 heading with the 
+    special {{ ... }} delimiter to print the value 
+    of the dt_now variable.
+    '''
+    dt_now = datetime.datetime.now()
+    return render_template('date.html', dt_now = dt_now)
+
+@app.route('/comments/')
+def comments():
+    comments = ['This is being printed recursively', 'Line by line', 'Using jinja2', 'Looping capabilities']
+    return render_template('comments.html', comments = comments)
 
 if __name__ == '__main__':
     app.run(debug = True)
