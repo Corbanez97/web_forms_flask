@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %} - FlaskApp</title>
     <style>
+        .message {
+            padding: 10px;
+            margin: 5px;
+            background-color: #f3f3f3
+        }
         nav a {
             color: #d64161;
             font-size: 3em;
@@ -18,6 +23,7 @@
             will return the URL for the view function you give it.#}
         <a href= "{{ url_for('index') }}">FlaskApp</a>
         <a href="{{ url_for('comments') }}">Comments</a>
+        <a href="{{ url_for('messages')}}">Messages</a>
         <a href="{{ url_for('about') }}">About</a>
     </nav>
     <hr>
