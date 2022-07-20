@@ -75,7 +75,8 @@ def show_datetime():
 @app.route('/comments/')
 def comments():
     comments = ['This is being printed recursively', 'Line by line', 'Using jinja2', 'Looping capabilities']
-    return render_template('comments.html', comments = comments)
+    footnote = ['This is being', 'Joined by', 'A Jinja filter']
+    return render_template('comments.html', comments = comments, footnote = footnote)
 
 if __name__ == '__main__':
     app.run(debug = True)

@@ -2,6 +2,12 @@
 
 {% block content %}
     <h1>{% block title %} Comments {% endblock %}</h1>
+    <div>
+        {{ "<h3>THIS CODE IS NOT SAFE, THEREFORE JINJA WON'T RENDER IT</h3>" }}
+    </div>
+    <div>
+        {{ "<h3>THIS CODE IS SAFER BECAUSE OF JINJA FILTER SAFE</h3>" | safe }}
+    </div>
     <div style="width: 50%; margin: auto">
         {% for comment in comments %} {# Loops just like python!! ^w^ #}
             {% if loop.index % 2 == 0 %}
@@ -11,8 +17,12 @@
             {% endif %}
         <div style="padding: 10px; background-color: {{ bg_color }}; margin: 20px"> {#Read above set variable#}
             <p>#{{ loop.index }}</p>
-            <p style="font-size: 24px">{{ comment }}</p>
+            <p style="font-size: 24px">{{ comment | upper }}</p>{#The pipe upper is a Jinja filter. This is an example of a Jinja Function like object#}
         </div>
         {% endfor %}
+        <hr>
+        <div>
+            <p> {{ footnote| join(" | ")}}</p> {#A pipe followed by a key word is a Jinja filter. This is an example of concatenation.#}
+        </div>
     </div>
 {% endblock %}
