@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Visits {% endblock %}</h1>
+    <hr>
+    {% for record in records %}
+        <h2> {{ record['name'] }} </h2>
+        <h4> {{ record['message'] }} </h4>
+        <p> {{ record['age'] }}</p>
+        <p><i>({{ record['motivation'] }})</i></p>
+        <p>Availability:
+            {% if record['confirmation'] %}
+                Confirmed
+            {% else %}
+                Unconfirmed
+            {% endif %}</p>
+        <hr>
+    {% endfor %}
+{% endblock %}

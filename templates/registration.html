@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Register your visit.{% endblock %}</h1>
+
+    <form method="POST" action="{{ url_for('registration') }}"> {#form passed via window function registration on app.py#}
+        {{ form.csrf_token }}
+        <p>
+            {{ form.name.label }}
+            {{ form.name(size=20) }}
+        </p>
+
+        {% if form.name.errors %}
+            <ul class="errors">
+                {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            {{ form.message.label }}
+        </p>
+        {{ form.message(rows=10, cols=50) }}
+
+        {% if form.message.errors %}
+            <ul class="errors">
+                {% for error in form.message.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            {{ form.age.label }}
+            {{ form.age() }}
+        </p>
+
+        {% if form.age.errors %}
+            <ul class="errors">
+                {% for error in form.age.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            {{ form.confirmation() }} {{ form.confirmation.label }}
+        </p>
+
+        {% if form.confirmation.errors %}
+            <ul class="errors">
+                {% for error in form.confirmation.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            {{ form.motivation.label }}
+            {{ form.motivation() }}
+        </p>
+
+        {% if form.motivation.errors %}
+            <ul class="errors">
+                {% for error in form.motivation.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            <input type="submit" value="Add">
+        </p>
+    </form>
+
+{% endblock %}
