@@ -19,7 +19,7 @@ In the line from wtforms.validators import InputRequired, Length,
                 of a string to ensure it has a minimum number of characters, 
                     or that it doesn’t exceed a certain length.
 '''
-from email.policy import default
+
 from flask_wtf import FlaskForm
 from sqlalchemy import Integer
 from wtforms import (StringField, TextAreaField, IntegerField, BooleanField, RadioField)
@@ -33,7 +33,7 @@ class RegistrationForm(FlaskForm):
 
     message = TextAreaField('Leave a Message', validators=[Length(max = 500)])
 
-    motivation = RadioField('Motivation', choices=['Study', 'Hiring', 'Filler'])
+    motivation = RadioField('Motivation', choices=[('Study', 'Study'), ('Hiring', 'Hiring')])
 
     confirmation = BooleanField('Confirmation', default = 'checked')
 

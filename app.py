@@ -10,6 +10,8 @@ from markupsafe import escape
 import datetime
 from flask import Flask, render_template #render_template to... render... a template... ☜(ﾟヮﾟ☜)
 from flask import request, url_for, flash, redirect
+from application.forms import RegistrationForm ##Import form class created
+
 '''
 *The global request object to access incoming request data 
     that will be submitted via the HTML form you built in the last step.
@@ -116,6 +118,31 @@ def create():
             messages.append({'title': title, 'body': body})
             return redirect(url_for('message')) #Python itself redirects you to a url_for. Quite readable
     return render_template('create.html')
+
+records = [
+    {'name': 'Lucas Corbanez',
+        'age': 25,
+            'message': 'This is the first message from the form.',
+                'motivation': 'Study',
+                    'confirmation': True}
+]
+
+@app.route('/registration/', methods = ('GET', 'POST'))
+def registration():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        records.append({'name': form.name.data,
+                        'message': form.message.data,
+                        'age': form.age.data,
+                        'confirmation': form.confirmation.data,
+                        'motivation': form.motivation.data
+                        })
+        return redirect(url_for('visits'))
+    return render_template('registration.html', form = form)
+
+@app.route('/visits/')
+def visits():
+    return render_template('visits.html', records = records)
 
 if __name__ == '__main__':
     app.run(debug = True)
